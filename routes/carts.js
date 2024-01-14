@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const {body, param, validationResult} = require('express-validator');
+const {
+    addToCart,
+    getCartItems,
+    removeCartItem
+} = require('../controller/CartController')
 
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
@@ -8,20 +13,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 router.use(express.json());
 
-router.post('/', (req,res) => {
+router.post('/', addToCart)
 
-})
+router.get('/', getCartItems)
 
-router.get('/', (req,res) => {
+router.delete('/:id', removeCartItem)
 
-})
-
-router.delete('/:id', (req,res) => {
-
-})
-
-router.get('/나중에', (req,res) => {
-
-})
 
 module.exports = router;
