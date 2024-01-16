@@ -111,8 +111,23 @@ WHERE books.category_id = categories.id AND books.id = ?;`;
 
 
 
-const newBooks = (req, res) => {
-   
+const addBooks = (req, res) => {
+    
+    const {title, img, category_id, form, isbn, summary, detail, author, pages, contents, price, pub_date} = req.body;
+
+    let sql = `INSERT INTO books (title, form, isbn, summary, detail, author, pages, contents, price, pub_date)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+    let values = [title, img, category_id, form, isbn, summary, detail, author, pages, contents, price, pub_date];
+ 
+    conn.query(sql, values, (err, results) => {
+         if(err) {
+             console.log(err);
+             return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+         }
+ 
+         return res.status(StatusCodes.OK).json(results);
+    })
 };
 
 module.exports = {

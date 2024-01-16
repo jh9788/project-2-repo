@@ -14,6 +14,6 @@ router.use(express.json());
 
 router.get('/', books)
 router.get('/:id', bookDetail)
-
+router.post('/', addBook)
 
 module.exports = router;
