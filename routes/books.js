@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const {
     books,
     bookDetail,
-    newBooks
+    addBook
 } = require('../controller/BookController');
 
 router.use(express.json());

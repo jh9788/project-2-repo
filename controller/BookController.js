@@ -111,7 +111,7 @@ WHERE books.category_id = categories.id AND books.id = ?;`;
 
 
 
-const addBooks = (req, res) => {
+const addBook = (req, res) => {
     
     const {title, img, category_id, form, isbn, summary, detail, author, pages, contents, price, pub_date} = req.body;
 
@@ -133,5 +133,5 @@ const addBooks = (req, res) => {
 module.exports = {
     books,
     bookDetail,
-    newBooks
+    addBook
 }
