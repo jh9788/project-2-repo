@@ -106,3 +106,11 @@ DELETE FROM cartItems WHERE id IN (1,2,3);
 SELECT orders.id, book_title, total_quantity, total_price, created_at, address, receiver, contact
 FROM orders LEFT JOIN deliveries
 ON orders.delivery_id = deliveries.id;
+
+//도서 페이징
+SELECT * FROM Bookshop.books LIMIT 4 OFFSET 0;
+SELECT count(*) FROM Bookshop.books;
+
+//두번째 것이 성능상으로 이점이 있음
+SELECT SQL_CALC_FOUND_ROWS * FROM Bookshop.books LIMIT 4 OFFSET 0;
+SELECT found_rows();
