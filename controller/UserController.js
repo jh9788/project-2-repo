@@ -21,7 +21,10 @@ const join = (req, res) => {
             return res.status(StatusCodes.BAD_REQUEST).end();
         }
 
-        return res.status(StatusCodes.CREATED).json(results);
+        if(results.affectedRows)
+            return res.status(StatusCodes.CREATED).json(results);
+        else
+            return res.status(StatusCodes.BAD_REQUEST).end();
 
     })
 };
@@ -44,7 +47,8 @@ const login = (req, res) => {
           if(loginUser && loginUser.password == hashedPassword){
               //token 발급
               const token = jwt.sign({
-                  email : loginUser.email
+                id: loginUser.id,
+                email : loginUser.email
               }, process.env.PRIVATE_KEY, {
                   expiresIn : '30m',
                   issuer : "jh"
