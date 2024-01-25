@@ -37,8 +37,15 @@ const books = (req, res) => {
             
             // return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
         }
-        if(results.length)
+        if(results.length){
+            results.map((result) => {
+                result.pubDate = result.pub_date;
+                delete result.pub_date;
+            });
+            
             allBooksRes.books = results;
+        }
+            
         else
             return res.status(StatusCodes.NOT_FOUND).end();
     });
@@ -168,6 +175,8 @@ const addBook = (req, res) => {
          return res.status(StatusCodes.OK).json(results);
     })
 };
+
+
 
 module.exports = {
     books,
