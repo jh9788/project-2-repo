@@ -6,7 +6,8 @@ const jwt = require('jsonwebtoken');
 const {
     books,
     bookDetail,
-    addBook
+    addBook,
+    getAddBookPage
 } = require('../controller/BookController');
 
 router.use(express.json());
@@ -23,6 +24,7 @@ const validate = (req, res, next) => {
 
 router.get('/', books);
 router.get('/:id', param('id').notEmpty().withMessage('도서 id 필요'), validate, bookDetail);
-router.post('/', addBook);
+router.post('/add', addBook);
+router.get('/add/pages', getAddBookPage);
 
 module.exports = router;

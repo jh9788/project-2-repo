@@ -176,10 +176,23 @@ const addBook = (req, res) => {
     })
 };
 
+const getAddBookPage = (req, res) => {
+    let sql = `SELECT * FROM categories`;
+ 
+    conn.query(sql, (err, results) => {
+         if(err) {
+             console.log(err);
+             return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+         }
+ 
+         return res.status(StatusCodes.OK).json(results);
+    })
+};
 
 
 module.exports = {
     books,
     bookDetail,
-    addBook
+    addBook,
+    getAddBookPage
 }
